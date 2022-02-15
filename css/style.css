@@ -336,6 +336,23 @@ label, .form__btn{
     justify-content: space-between;
 }
 
+button, .form__item {
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.form__item:hover{
+    transform: scale(1.1);
+}
+
+button:hover{
+    transform: scale(1.1);
+}
+
+.main-info__change:hover{
+    transform: scale(1);
+}
+
 @media (max-width: 1220px){
     .form__container{
         flex-direction: column;
