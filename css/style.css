@@ -336,12 +336,12 @@ label, .form__btn{
     justify-content: space-between;
 }
 
-button, .form__item {
+button, .form__btn {
     cursor: pointer;
     transition: 0.4s;
 }
 
-.form__item:hover{
+.form__btn:hover{
     transform: scale(1.1);
 }
 
