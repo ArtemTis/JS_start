@@ -12,16 +12,22 @@ const nameInStorage = () => {
         var name = localStorage.getItem("name");
         if (!name) {
             name = prompt('Как вас зовут?');
-            localStorage.setItem("name", name);
+            if (name == null || name == '' || name == ' ') {
+                alert('Введите имя правильно');
+                name = prompt('Как вас зовут?');
+            }else{ 
+                localStorage.setItem("name", name);
 
-            alert('Привет, ' + name);
+                alert('Привет, ' + name);
 
-            btnHeader.style.display = 'none';
-            header.insertAdjacentHTML("beforeend", `
-            <div class = "userName">
-            Пользователь: ${localStorage.getItem("name")}
-            </div>
-            `)
+                btnHeader.style.display = 'none';
+                header.insertAdjacentHTML("beforeend", `
+                <div class = "userName">
+                Пользователь: ${localStorage.getItem("name")}
+                </div>
+                `)
+            }
+            
         }
     })
 
@@ -116,7 +122,12 @@ const squareForm = () => {
             document.querySelector('.fieldEmpty1').style.display = 'none';
             let value = input.value.split(' ');
             let result = value[0] * value[1] * 1/2;
-            alert('Площадь треугольника = ' + result);  
+            if(isNaN(result)){
+                alert('Введите два числа');
+            }else{
+                alert('Площадь треугольника = ' + result);  
+            }
+            
         }
     })
 }
@@ -133,7 +144,7 @@ const stringFunc = () => {
         }else{
             document.querySelector('.fieldEmpty2').style.display = 'none';
             let strValue = strInput.value.split(' ');
-            alert(strValue[0].length == strValue[1].length)
+            alert(strValue[0].length == strValue[1].length)       
         }
     })
 }
@@ -141,7 +152,7 @@ stringFunc();
 
 const extremFunc = () => {
     const extrForm = document.forms.extArray;
-    const extrInput = extrForm.elements.array__input;
+    const extrInput = extrForm.elements.array__input;   
 
     extrForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -251,7 +262,7 @@ const testFunc = () => {
             ans: `Math.max()` 
         },
     ]
-
+    
     testForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -266,16 +277,18 @@ const testFunc = () => {
                     wrap[index].insertAdjacentHTML('beforeend', `
                     <p class = "trueAns">Ваш ответ: ${testInput[index].value } верный!</p>
                     `)
-                } 
+                }        
             }  
         })
+        if (!ready) {
+            resultTest.style.display = 'block';
+            resultModal.insertAdjacentHTML('beforeend', `
+            <p>Результат: ${counter} из ${testInput.length}</p>
+            `)
+        }
         ready = true;
-        resultTest.style.display = 'block';
-        resultModal.insertAdjacentHTML('beforeend', `
-        <p>Результат: ${counter} из ${testInput.length}</p>
-        `)
+        
     })
-    
 }
 testFunc();
 
