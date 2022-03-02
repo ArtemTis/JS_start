@@ -163,7 +163,11 @@ const extremFunc = () => {
             let extrValue = extrInput.value.split(' ');
             let min = Math.min(...extrValue);
             let max = Math.max(...extrValue);
-            alert('min: ' + min +'; '+ 'max: ' + max);
+            if (isNaN(min) || isNaN(max)) {
+                alert('Введите значение корректно')
+            }else{
+                alert('min: ' + min +'; '+ 'max: ' + max);
+            }
         }
     })
 }
